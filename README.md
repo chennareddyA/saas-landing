@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Euphoria: Banking SaaS Landing Page
 
-## Getting Started
+A Figma design rebuilt as a responsive, production-ready landing page with Next.js 16, React 19, TypeScript and Tailwind CSS v4.
 
-First, run the development server:
+**Live demo:** https://YOUR-LINK.vercel.app
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+![Landing page](docs/desktop.png)
+
+## About this project
+
+I converted a Figma Community design into code, matching its layout, typography, spacing and colors section by section against the original frames (1440px desktop, 1240px content width, 120px section rhythm). The design only included a desktop version, so I designed the tablet and mobile layouts myself.
+
+| Figma design | Built page |
+| --- | --- |
+| ![Design](docs/design.png) | ![Build](docs/desktop.png) |
+
+## Features
+
+- **11 sections:** hero, partners, features, currencies, how it works, stats, pricing, smart banking, testimonials, call to action and footer
+- **Working currency converter:** type an amount, swap currencies
+- **Monthly / yearly pricing toggle**
+- **Accessible accordion** with keyboard support and proper ARIA attributes
+- **Infinite testimonial marquee** that pauses on hover and respects reduced-motion settings
+- **Mobile navigation menu** (closes with Escape)
+- **Fully responsive** from 360px to 1440px+, with no horizontal scrolling
+- **Static rendering** for fast loading and good SEO, with Google Fonts self-hosted through `next/font`
+
+## Tech stack
+
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4. No UI library: every component, icon and illustration is built in code.
+
+## Project structure
+
+```
+app/
+  layout.tsx      fonts (Urbanist, Inter) and page metadata
+  page.tsx        section order
+  globals.css     design tokens (colors, fonts) and background patterns
+components/
+  Hero.tsx, Navbar.tsx, CurrencyConverter.tsx
+  Partners.tsx, Features.tsx, Currencies.tsx, HowItWorks.tsx, Stats.tsx
+  Pricing.tsx, SeamlessBanking.tsx, Testimonials.tsx, CallToAction.tsx, Footer.tsx
+  ui.tsx          shared pieces: section badge, buttons, stars, avatars
+  icons.tsx, Flags.tsx, Logo.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open http://localhost:3000.
 
-## Learn More
+## Credits
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Design: [Banking SaaS Landing Page Design](https://www.figma.com/community/file/1430610446705043896) by sajiburuxui, licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Brand names and logos in the design are fictional placeholders.

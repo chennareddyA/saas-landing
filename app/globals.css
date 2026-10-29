@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Design tokens taken from the Figma file */
+@theme {
+  --color-brand: #1d9b5e;
+  --color-brand-dark: #178350;
+  --color-brand-soft: #8fe26a;
+  --color-lime: #d2f801;
+  --color-ink: #0a1519;
+  --color-body: #545c5e;
+  --color-night: #0f2028;
+  --color-night-deep: #0a151a;
+  --color-surface: #f2f5f7;
+  --color-line: #dfe3e5;
+  --color-pill: #a5d7bf;
+  --color-star: #f7b500;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-urbanist), ui-sans-serif, system-ui, sans-serif;
+  --font-inter: var(--font-inter-var), ui-sans-serif, system-ui, sans-serif;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-marquee-reverse: marquee 50s linear infinite reverse;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-ink);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dark sections: navy-to-green gradient with a faint 96px grid */
+.bg-night-grid {
+  background-color: var(--color-night);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    radial-gradient(ellipse 55% 60% at 100% 0%, rgba(58, 92, 40, 0.75), transparent 70%),
+    radial-gradient(ellipse 45% 55% at 0% 100%, rgba(40, 70, 52, 0.55), transparent 70%),
+    radial-gradient(ellipse 35% 40% at 25% 35%, rgba(46, 72, 52, 0.45), transparent 70%);
+  background-size: 96px 96px, 96px 96px, 100% 100%, 100% 100%, 100% 100%;
+  background-position: center top;
+}
+
+/* Halftone dot pattern for light panels (combine with bg-surface) */
+.bg-dots {
+  background-image: radial-gradient(rgba(10, 21, 25, 0.16) 1.4px, transparent 1.6px);
+  background-size: 18px 18px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee,
+  .animate-marquee-reverse { animation: none; }
+}
+
+/* Halftone: fine dots everywhere, larger dots fading in toward the bottom-left corner */
+.bg-halftone {
+  background-image:
+    radial-gradient(rgba(10, 21, 25, 0.1) 1.2px, transparent 1.5px),
+    radial-gradient(rgba(10, 21, 25, 0.13) 3.2px, transparent 3.6px);
+  background-size: 16px 16px, 16px 16px;
+  background-position: 0 0, 8px 8px;
+  mask-image: radial-gradient(ellipse 120% 110% at 0% 100%, #000 0%, rgba(0, 0, 0, 0.35) 45%, transparent 75%);
+}
+
+/* Footer uses a deeper base tone */
+.bg-night-deep-tone {
+  background-color: var(--color-night-deep);
 }

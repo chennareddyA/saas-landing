@@ -2,7 +2,7 @@
 
 A Figma design rebuilt as a responsive, production-ready landing page with Next.js 16, React 19, TypeScript and Tailwind CSS v4.
 
-**Live demo:** https://YOUR-LINK.vercel.app
+**Live demo:** https://chennareddy-landing.vercel.app
 
 ![Landing page](docs/desktop.png)
 

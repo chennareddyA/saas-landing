@@ -21,13 +21,18 @@ export const FlagUS = ({ className }: { className?: string }) => (
   </Round>
 )
 
+// Star positions are rounded so the server and browser produce identical values
+const euStars = Array.from({ length: 12 }, (_, i) => {
+  const a = (i / 12) * Math.PI * 2
+  return { cx: Number((22 + Math.cos(a) * 12).toFixed(2)), cy: Number((22 + Math.sin(a) * 12).toFixed(2)) }
+})
+
 export const FlagEU = ({ className }: { className?: string }) => (
   <Round className={className}>
     <rect width="44" height="44" fill="#1e3a9e" />
-    {Array.from({ length: 12 }, (_, i) => {
-      const a = (i / 12) * Math.PI * 2
-      return <circle key={i} cx={22 + Math.cos(a) * 12} cy={22 + Math.sin(a) * 12} r="1.6" fill="#ffd400" />
-    })}
+    {euStars.map((star, i) => (
+      <circle key={i} cx={star.cx} cy={star.cy} r="1.6" fill="#ffd400" />
+    ))}
   </Round>
 )
 
